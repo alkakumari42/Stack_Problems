@@ -1,0 +1,38 @@
+
+class StckSorting{
+public static void main (String[] args) throws IOException{
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
+            Stack<Integer> stack = new Stack<Integer>();
+            while(stringTokenizer.hasMoreTokens()){
+                stack.push(Integer.parseInt(stringTokenizer.nextToken()));
+            }
+            System.out.println("search method of stack collection : "+stack.search(5));
+            reverseStack(stack);
+            System.out.println("stack after reversing - "+stack);
+            System.out.println("search method of stack collection : "+stack.search(5));
+            System.out.println("stack after sorting  : "+sort(stack)); //sortingg...
+        }
+
+        public static Stack<Integer> sort(Stack<Integer> s)
+        {
+            if(s.empty()) return s;
+            else{
+                int ele = (int)s.pop();
+                sort(s);
+                insertSorted(s,ele);
+            }
+            return s;
+        }
+
+        static void insertSorted(Stack s, int ele){
+            if(s.empty() || ele > (int)s.peek()){
+                s.push(ele);
+            }
+            else{
+                int temp = (int)s.pop();
+                insertSorted(s,ele);
+                s.push(temp);
+            }
+        }
+   }
