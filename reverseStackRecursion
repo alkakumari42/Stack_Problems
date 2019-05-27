@@ -1,0 +1,40 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
+		Stack<Integer> stack = new Stack<Integer>();
+		while(stringTokenizer.hasMoreTokens()){
+		    stack.push(Integer.parseInt(stringTokenizer.nextToken()));
+		}
+		System.out.println("search method of stack collection : "+stack.search(5));
+	    reverseStack(stack);
+	    System.out.println("stack after reversing - "+stack);
+	    System.out.println("search method of stack collection : "+stack.search(5));
+	}
+	
+	static void reverseStack(Stack s){
+	    if(s.empty())
+	        return ;
+	    else{
+	         int ele = (int)s.pop();
+	         reverseStack(s);
+	         inserAtBottom(s,ele); // push the last element at the bottom..in other function
+	        }
+	}
+	
+	static void inserAtBottom(Stack s, int ele){
+	    if(s.empty()){
+	        s.push(ele);
+	    }
+	    else{
+	        int temp = (Integer)s.pop();
+	        inserAtBottom(s,ele);
+	        s.push(temp);
+	    }
+   }
+}
